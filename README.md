@@ -20,7 +20,7 @@ In the following example, the CSL's [styles](https://github.com/citation-style-l
     ```bash
     cd ~/GitHub/styles
     # mount ~/GitHub/styles into /var/csl/data
-    docker run -it --rm --mount type=bind,src=$PWD,dst=/var/csl/data customcommander/csl-dev
+    docker run -it --rm --mount type=bind,src=$PWD,dst=/var/csl/data -w /var/csl/data customcommander/csl-dev
     ```
 
 2.  Validate a file:
