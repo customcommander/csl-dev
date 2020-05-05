@@ -5,29 +5,24 @@ This Docker image contains:
 - [CSL Schema v1.0.1](https://github.com/citation-style-language/schema/releases). (Available in `/var/csl/schema`.)
 - [Jing](https://github.com/relaxng/jing-trang). (Validator for RELAX NG.)
 
-## Install
+## Prerequisites
 
-```
-docker pull customcommander/csl-dev
-```
+1.  You must have Docker installed on your machine.
 
-## Usage
+2.  You must build the Docker image first:
 
-In the following example, the CSL's [styles](https://github.com/citation-style-language/styles) repository has been cloned into `~/GitHub`.
-
-1.  Start the container with some data:
-
-    ```bash
-    cd ~/GitHub/styles
-    # mount ~/GitHub/styles into /var/csl/data
-    docker run -it --rm --mount type=bind,src=$PWD,dst=/var/csl/data -w /var/csl/data customcommander/csl-dev
+    ```
+    cd /path/to/csl-dev
+    docker build -t customcommander/csl-dev .
     ```
 
-2.  Validate a file:
 
-    ```bash
-    # (inside the container)
-    # jing displays some warnings in stderr which can be safely ignored
-    # validation errors are redirected to stdout
-    jing -c /var/csl/schema/csl.rnc academy-of-management-review.csl 2>/dev/null
-    ```
+
+## How to validate a CSL file?
+
+```
+cd /path/to/csl-dev
+./validate-csl.sh /path/to/my/style.csl
+```
+
+_Note: if the CSL file is valid nothing will be printed out._
